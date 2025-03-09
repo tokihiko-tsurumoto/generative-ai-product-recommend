@@ -6,14 +6,15 @@
 # ライブラリの読み込み
 ############################################################
 import logging
-from typing import List
-from sudachipy import tokenizer, dictionary
-import constants as ct
 
+from sudachipy import dictionary, tokenizer
+
+import constants as ct
 
 ############################################################
 # 関数定義
 ############################################################
+
 
 def build_error_message(message):
     """
@@ -33,7 +34,7 @@ def preprocess_func(text):
     形態素解析による日本語の単語分割
     Args:
         text: 単語分割対象のテキスト
-    
+
     Returns:
         単語分割を実施後のテキスト
     """
@@ -41,7 +42,7 @@ def preprocess_func(text):
 
     tokenizer_obj = dictionary.Dictionary(dict="full").create()
     mode = tokenizer.Tokenizer.SplitMode.A
-    tokens = tokenizer_obj.tokenize(text ,mode)
+    tokens = tokenizer_obj.tokenize(text, mode)
     words = [token.surface() for token in tokens]
     words = list(set(words))
 
